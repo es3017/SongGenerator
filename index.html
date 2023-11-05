@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Song or Poem Generator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Song or Poem Generator</h1>
+    <div>
+        <label for="mood">Mood:</label>
+        <select id="mood">
+            <option value="upbeat">Upbeat</option>
+            <option value="melancholy">Melancholy</option>
+        </select>
+    </div>
+    <div>
+        <label for="verse-type">Verse Type:</label>
+        <select id="verse-type">
+            <option value="free-form">Free Form</option>
+            <option value="standard">Standard Given Verse</option>
+        </select>
+    </div>
+    <div>
+        <label for="verse-location">Verse Location:</label>
+        <input type="number" id="verse-location" placeholder="Sequence Location">
+    </div>
+    <div>
+        <label for="verse-content">Verse Content:</label>
+        <textarea id="verse-content" rows="4" cols="50" placeholder="Enter your verse"></textarea>
+    </div>
+    <button id="generate-button">Generate</button>
+    <div id="output"></div>
+
+    <script>
+        $(document).ready(function () {
+            $("#generate-button").click(function () {
+                var mood = $("#mood").val();
+                var verseType = $("#verse-type").val();
+                var location = $("#verse-location").val();
+                var content = $("#verse-content").val();
+
+                var output = "";
+
+                if (verseType === "free-form") {
+                    output += "In a " + mood + " mood, I say: " + content;
+                } else {
+                    output += "In a " + mood + " mood, I sing a standard verse: " + content;
+                }
+
+                if (location) {
+                    output = output + " (at sequence location " + location + ")";
+                }
+
+                $("#output").html(output);
+            });
+        });
+    </script>
+</body>
+</html>
